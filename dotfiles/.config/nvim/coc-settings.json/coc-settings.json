@@ -1,0 +1,37 @@
+{
+    "java.home": "/usr/lib/jvm/java-11-openjdk",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/usr/lib/jvm/java-8-amazon-corretto",
+            "default": true
+        }
+    ],
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    },
+    "rust-analyzer.enable": true,
+    "rust-analyzer.updates.prompt": false,
+    "cSpell.userWords": [
+        "RC's"
+    ]
+}
