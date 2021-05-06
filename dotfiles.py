@@ -54,7 +54,6 @@ elif "load" in sys.argv:
 			print(" Copying directory... {} to {}".format(src, dest))
 			if os.path.exists(dest):
 				print("Trying to load from: " + src + " to " + dest)
-				print("")
 				i = input(dest + " already exists. Delete? y/N")
 				if i != "y":
 					continue
