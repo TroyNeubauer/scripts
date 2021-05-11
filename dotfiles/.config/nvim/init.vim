@@ -31,6 +31,9 @@ Plug 'rhysd/vim-clang-format'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'alvan/vim-closetag'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()
 
@@ -239,7 +242,7 @@ map L $
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-let g:coc_global_extensions = ['coc-spell-checker', 'coc-json', 'coc-markdownlint', 'coc-yaml', 'coc-yank', 'coc-git', 'coc-clangd', 'coc-flutter', 'coc-html', 'coc-java', 'coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-spell-checker', 'coc-json', 'coc-markdownlint', 'coc-yaml', 'coc-yank', 'coc-git', 'coc-clangd', 'coc-flutter', 'coc-html', 'coc-java', 'coc-rust-analyzer', 'coc-tailwindcss', 'coc-tsserver']
 
 "All coc related actions stem from q
 noremap q <Nop>
@@ -250,6 +253,7 @@ nmap qf :call CocAction('format')<CR>
 nmap qi <Plug>(coc-implementation)
 nmap qh <Plug>(coc-definition)
 nmap qs <Plug>(coc-fix-current)
+nmap qj :CocCommand workspace.showOutput<CR>
 
 nmap qd :call <SID>show_documentation()<CR>
 
@@ -266,6 +270,7 @@ noremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>q :q<CR>
 
 noremap <silent> <leader>n :bnext<CR>
+noremap <silent> <leader>t <c-^>
 noremap <silent> <leader>b :bprev<CR>
 noremap <silent> <leader>e :bw<CR>
 
@@ -307,6 +312,11 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+noremap <leader>( iimport React from 'react'<CR>const XX = () => {<CR>return (<CR><CR>)<CR>}<CR><CR>export default XX;<ESC>
+imap sout System.out.println("
+
 
 
 "Unmap programmer dvorak keybinds when in normal mode for things like 3d
