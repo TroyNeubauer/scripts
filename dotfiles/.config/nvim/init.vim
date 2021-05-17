@@ -49,12 +49,9 @@ end
 if !has('gui_running')
   set t_Co=256
 endif
-if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
-  " screen does not (yet) support truecolor
-  set termguicolors
-endif
+"set termguicolors
 
-colorscheme base16-gruvbox-dark-hard
+"colorscheme base16-gruvbox-dark-hard
 "colorscheme base16-atelier-savanna
 "colorscheme base16-atelier-sulphurpool-light
 syntax on

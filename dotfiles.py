@@ -46,10 +46,10 @@ elif "load" in sys.argv:
         dest = os.path.join(home_dir, path)
         if os.path.isfile(src):
             print(" Copying file... {} to {}".format(src, dest))
-            if not os.path.exists(dest):
-                dirs = os.path.join(dest, os.pardir)
-                print("  Creating parent dirs: " + dirs)
-                os.makedirs(dirs, exist_ok=True)
+            parent = Path(dest).parent.absolute()
+            if not os.path.exists(parent):
+                print("  Creating parent dirs: {}".format(parent))
+                os.makedirs(parent, exist_ok=True)
             shutil.copy(src, dest)
 
         else:
