@@ -15,6 +15,7 @@ to_copy = [
     ".config/nvim/init.vim",
     ".config/nvim/coc-settings.json",
     ".config/leftwm/config.toml",
+    ".gitconfig",
 #   ... Add each file or dir that needs to be copied
 ]
 
