@@ -1,9 +1,8 @@
 modkey = "Mod4"
-mousekey = "Mod4"
+mousekey = "Mod1"
 workspaces = []
 tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 layouts = ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
-disable_current_tag_swap = false
 
 [[keybind]]
 command = "Execute"
@@ -14,7 +13,7 @@ key = "d"
 [[keybind]]
 command = "Execute"
 value = "alacritty"
-modifier = ["modkey", "Shift"]
+modifier = ["modkey"]
 key = "Return"
 
 [[keybind]]
@@ -50,6 +49,12 @@ modifier = ["modkey"]
 key = "w"
 
 [[keybind]]
+command = "SwapTags"
+modifier = ["modkey"]
+key = "Tab"
+
+
+[[keybind]]
 command = "MoveWindowUp"
 modifier = ["modkey", "Shift"]
 key = "Up"
@@ -61,7 +66,7 @@ key = "Down"
 
 [[keybind]]
 command = "MoveWindowTop"
-modifier = ["modkey"]
+modifier = ["modkey", "Shift"]
 key = "Return"
 
 [[keybind]]
@@ -94,110 +99,123 @@ command = "FocusWorkspacePrevious"
 modifier = ["modkey"]
 key = "Left"
 
+
 [[keybind]]
 command = "GotoTag"
 value = "1"
 modifier = ["modkey"]
-key = "("
+key = "h"
 
 [[keybind]]
 command = "GotoTag"
 value = "2"
 modifier = ["modkey"]
-key = ")"
+key = "t"
 
 [[keybind]]
 command = "GotoTag"
 value = "3"
 modifier = ["modkey"]
-key = "}"
+key = "n"
 
 [[keybind]]
 command = "GotoTag"
 value = "4"
 modifier = ["modkey"]
-key = "+"
+key = "s"
 
-[[keybind]]
-command = "GotoTag"
-value = "5"
-modifier = ["modkey"]
-key = "{"
-
-[[keybind]]
-command = "GotoTag"
-value = "6"
-modifier = ["modkey"]
-key = "]"
-
-[[keybind]]
-command = "GotoTag"
-value = "7"
-modifier = ["modkey"]
-key = "["
-
-[[keybind]]
-command = "GotoTag"
-value = "8"
-modifier = ["modkey"]
-key = "!"
-
-[[keybind]]
-command = "GotoTag"
-value = "9"
-modifier = ["modkey"]
-key = "="
-
-[[keybind]]
-command = "MoveToTag"
-value = "1"
-modifier = ["modkey", "Shift"]
-key = "("
-
-[[keybind]]
-command = "MoveToTag"
-value = "2"
-modifier = ["modkey", "Shift"]
-key = ")"
-
-[[keybind]]
-command = "MoveToTag"
-value = "3"
-modifier = ["modkey", "Shift"]
-key = "}"
-
-[[keybind]]
-command = "MoveToTag"
-value = "4"
-modifier = ["modkey", "Shift"]
-key = "+"
-
-[[keybind]]
-command = "MoveToTag"
-value = "5"
-modifier = ["modkey", "Shift"]
-key = "{"
-
-[[keybind]]
-command = "MoveToTag"
-value = "6"
-modifier = ["modkey", "Shift"]
-key = "]"
-
-[[keybind]]
-command = "MoveToTag"
-value = "7"
-modifier = ["modkey", "Shift"]
-key = "["
-
-[[keybind]]
-command = "MoveToTag"
-value = "8"
-modifier = ["modkey", "Shift"]
-key = "!"
-
-[[keybind]]
-command = "MoveToTag"
-value = "9"
-modifier = ["modkey", "Shift"]
-key = "="
+#[[keybind]]
+#command = "GotoTag"
+#value = "2"
+#modifier = ["modkey"]
+#key = ")"
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "3"
+#modifier = ["modkey"]
+#key = "}"
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "4"
+#modifier = ["modkey"]
+#key = "+"
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "5"
+#modifier = ["modkey"]
+#key = "{"
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "6"
+#modifier = ["modkey"]
+#key = "]"
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "7"
+#modifier = ["modkey"]
+#key = "["
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "8"
+#modifier = ["modkey"]
+#key = "!"
+#
+#[[keybind]]
+#command = "GotoTag"
+#value = "9"
+#modifier = ["modkey"]
+#key = "="
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "2"
+#modifier = ["modkey", "Shift"]
+#key = ")"
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "3"
+#modifier = ["modkey", "Shift"]
+#key = "}"
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "4"
+#modifier = ["modkey", "Shift"]
+#key = "+"
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "5"
+#modifier = ["modkey", "Shift"]
+#key = "{"
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "6"
+#modifier = ["modkey", "Shift"]
+#key = "]"
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "7"
+#modifier = ["modkey", "Shift"]
+#key = "["
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "8"
+#modifier = ["modkey", "Shift"]
+#key = "!"
+#
+#[[keybind]]
+#command = "MoveToTag"
+#value = "9"
+#modifier = ["modkey", "Shift"]
+#key = "="
