@@ -5,7 +5,7 @@ import sys
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-git_dir = os.path.join(script_dir, "dotfiles")
+git_dir = os.path.join(script_dir, "storage")
 home_dir = str(Path.home())
 
 print("home_dir is: " + home_dir)
