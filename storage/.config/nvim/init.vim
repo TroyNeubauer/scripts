@@ -41,17 +41,16 @@ call plug#end()
 if has('nvim')
     set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
     set inccommand=nosplit
-    noremap <C-q> :confirm qall<CR>
 end
 
 
 " deal with colors
 if !has('gui_running')
-  set t_Co=256
+    set t_Co=256
 endif
-"set termguicolors
+set termguicolors
 
-"colorscheme base16-gruvbox-dark-hard
+colorscheme base16-gruvbox-dark-hard
 "colorscheme base16-atelier-savanna
 "colorscheme base16-atelier-sulphurpool-light
 syntax on
@@ -83,7 +82,7 @@ let g:lightline = {
       \ },
       \ }
 function! LightlineFilename()
-  return expand('%:t') !=# '' ? @% : '[No Name]'
+    return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
 
 
@@ -281,11 +280,11 @@ nnoremap <leader>. g<c-g>
 
 "nnoremap <leader>z :call vimspector#Launch()<CR>
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 
@@ -389,8 +388,8 @@ autocmd InsertLeave * set nopaste
 
 " Jump to last edit position on opening file
 if has("autocmd")
-  " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-  au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+    au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 
