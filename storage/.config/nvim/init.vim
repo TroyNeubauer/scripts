@@ -1,5 +1,11 @@
-
 let mapleader = " "
+if !exists("g:os")
+    if has("win64") || has("win32")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname -a'), '\n', '', '')
+    endif
+endif
 
 
 call plug#begin('~/.vim/plugged')
@@ -18,8 +24,14 @@ Plug 'chriskempson/base16-vim'
 
 "File system
 Plug 'airblade/vim-rooter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+if g:os == "Windows"
+    Plug 'c/ProgramData/chotolatey/bin/fzf'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+else
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+endif
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -391,5 +403,3 @@ if has("autocmd")
     " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
     au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
-
