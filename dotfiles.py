@@ -21,6 +21,7 @@ to_copy = [
     ".gitconfig",
     ".null.gitconfig",
     ".xinitrc",
+    ".config/polybar/config",
 #   ... Add each file or dir that needs to be copied
 ]
 
