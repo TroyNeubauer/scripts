@@ -32,6 +32,15 @@
     "rust-analyzer.enable": true,
     "rust-analyzer.updates.prompt": false,
     "cSpell.userWords": [
-        "RC's"
+      "RC's",
+      "bprev",
+      "censorbuster",
+      "geteuid",
+      "libc",
+      "popen",
+      "println",
+      "sout",
+      "tempdir",
+      "xsel"
     ]
 }

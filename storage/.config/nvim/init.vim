@@ -261,6 +261,7 @@ nmap qf :call CocAction('format')<CR>
 nmap qi <Plug>(coc-implementation)
 nmap qh <Plug>(coc-definition)
 nmap qs <Plug>(coc-fix-current)
+nmap qw <Plug>(coc-codeaction-selected)
 nmap qj :CocCommand workspace.showOutput<CR>
 
 nmap qd :call <SID>show_documentation()<CR>
@@ -322,7 +323,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
-noremap <leader>( iimport React from 'react'<CR>const XX = () => {<CR>return (<CR><CR>)<CR>}<CR><CR>export default XX;<ESC>
+noremap <leader>( i import React from 'react'<CR>const XX = () => {<CR>return (<CR><CR>)<CR>}<CR><CR>export default XX;<ESC>
 imap sout System.out.println("
 
 
