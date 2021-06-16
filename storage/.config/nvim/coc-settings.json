@@ -32,15 +32,22 @@
     "rust-analyzer.enable": true,
     "rust-analyzer.updates.prompt": false,
     "cSpell.userWords": [
+      "GCed",
+      "Inet",
+      "POSTROUTING",
       "RC's",
       "bprev",
       "censorbuster",
+      "chrono",
       "geteuid",
+      "ipnet",
       "libc",
       "popen",
       "println",
+      "smallvec",
       "sout",
       "tempdir",
+      "wireguard's",
       "xsel"
     ]
 }

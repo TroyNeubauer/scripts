@@ -3,7 +3,7 @@ if !exists("g:os")
     if has("win64") || has("win32")
         let g:os = "Windows"
     else
-        let g:os = substitute(system('uname -a'), '\n', '', '')
+        let g:os = split(system('uname -a'), ' ')[0]
     endif
 endif
 
@@ -60,11 +60,13 @@ end
 if !has('gui_running')
     set t_Co=256
 endif
+
 set termguicolors
 
 colorscheme base16-gruvbox-dark-hard
 "colorscheme base16-atelier-savanna
 "colorscheme base16-atelier-sulphurpool-light
+
 syntax on
 
 
@@ -375,11 +377,19 @@ set undofile
 
 
 
-" X clipboard integration
-" p will paste clipboard into buffer
-" c will copy entire buffer into clipboard
-noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>
+if g:os == "Linux"
+  " X clipboard integration
+  " p will paste clipboard into buffer
+  " c will copy entire buffer into clipboard
+  noremap <leader>p :read !xsel --clipboard --output<cr>
+  noremap <leader>c :w !xsel -ib<cr><cr>
+else
+  if g:os == "Darwin"
+    noremap <leader>p :read !pbpaste<cr>
+    noremap <leader>c :w !pbcopy<cr><cr>
+ 
+  endif
+endif
 
 
 " I can type :help on my own, thanks.
