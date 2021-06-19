@@ -1,0 +1,5 @@
+#!/bin/sh
+bluetoothctl agent on
+bluetoothctl power on
+
+bluetoothctl connect E8:07:BF:FF:35:35

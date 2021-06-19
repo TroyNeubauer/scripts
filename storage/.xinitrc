@@ -4,7 +4,7 @@ setxkbmap -layout us -variant dvp
 
 /home/troy/.screenlayout/active.sh
 
-polybar --config=~/.config/polybar/config main &
+polybar --config=/home/troy/.config/polybar/config main &
 
 /home/troy/headphones-boot.sh &
 
