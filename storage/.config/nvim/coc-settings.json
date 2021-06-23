@@ -57,6 +57,7 @@
       "ipaddr",
       "ipnet",
       "libc",
+      "markdownlint",
       "nanos",
       "netlink",
       "nullblack",
@@ -66,6 +67,7 @@
       "pubkey",
       "reqwest",
       "rsplit",
+      "setconf",
       "smallvec",
       "sout",
       "syncconf",
@@ -74,5 +76,9 @@
       "wireguard's",
       "xsel",
       "zeroize"
-    ]
+    ],
+    "markdownlint.config": {
+        "default": true,
+        "line-length": false
+    }
 }
