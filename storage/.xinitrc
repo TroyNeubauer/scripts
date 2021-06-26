@@ -2,7 +2,7 @@
 
 setxkbmap -layout us -variant dvp
 
-/home/troy/.screenlayout/active.sh
+/home/troy/.screenlayout/active.sh &
 
 polybar --config=/home/troy/.config/polybar/config main &
 
