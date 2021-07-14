@@ -46,9 +46,11 @@ Plug 'plasticboy/vim-markdown'
 Plug 'alvan/vim-closetag'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'wikitopian/hardmode'
 
 call plug#end()
 
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 if has('nvim')
     set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
@@ -123,12 +125,6 @@ let java_ignore_javadoc=1
 let g:latex_indent_enabled = 1
 let g:latex_fold_envs = 0
 let g:latex_fold_sections = []
-
-" Quick-save
-nmap <leader>w :w<CR>
-
-" Don't confirm .lvimrc
-let g:localvimrc_ask = 0
 
 " rust
 let g:rustfmt_autosave = 0
@@ -243,8 +239,8 @@ set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•,space:.
 " =============================================================================
 
 "H and L for beginning and end of line
-map H ^
-map L $
+"map H ^
+"map L $
 
 " Use K to show documentation in preview window.
 
@@ -259,7 +255,7 @@ noremap q <Nop>
 
 nmap qr <Plug>(coc-references)
 nmap qt <Plug>(coc-rename)
-nmap qf :call CocAction('format')<CR>
+nmap qf :call My_coc_format()<CR>
 nmap qi <Plug>(coc-implementation)
 nmap qh <Plug>(coc-definition)
 nmap qs <Plug>(coc-fix-current)
@@ -277,8 +273,8 @@ nnoremap <leader>l <C-o>
 
 "Editor file actions
 noremap <silent> <leader><leader> :b#<CR>
-noremap <silent> <leader>w :w<CR>
-noremap <silent> <leader>q :q<CR>
+"noremap <silent> <leader>w :w<CR>
+"noremap <silent> <leader>q :q<CR>
 
 noremap <silent> <leader>n :bnext<CR>
 noremap <silent> <leader>t <c-^>
@@ -331,16 +327,16 @@ imap sout System.out.println("
 
 
 "Unmap programmer dvorak keybinds when in normal mode for things like 3d
-nmap & 1
-nmap [ 2
-nmap { 3
-nmap } 4
-nmap ( 5
-nmap = 6
-nmap * 7
-nmap ) 8
-nmap + 9
-
+nmap [ 7
+nmap { 5
+nmap } 3
+nmap ( 1
+nmap = 9
+nmap * 0
+nmap ) 2
+nmap + 4
+nmap ] 6
+nmap ! 8
 
 "Disable arrow keys when in normal mode 
 noremap <silent> <Right> :bnext<CR>
@@ -350,12 +346,14 @@ nnoremap <silent> <Up> :Files<CR>
 
 nmap <leader>h :Buffers<CR>
 
+nmap h <Nop>
+nmap l <Nop>
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 
-
+command! -nargs=0 Format :call CocAction('format')
 
 "Use kk in addition to ecsape because its faster to type and jj to save too
 imap <silent> kk <Esc>
