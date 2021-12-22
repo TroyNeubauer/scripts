@@ -2,4 +2,4 @@
 bluetoothctl agent on
 bluetoothctl power on
 
-bluetoothctl connect E8:07:BF:FF:35:35
+bluetoothctl connect AC:12:2F:5D:C2:C2

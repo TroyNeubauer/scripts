@@ -20,7 +20,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'chriskempson/base16-vim'
-
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'puremourning/vimspector', { 'dir': 'python3 install_gadget.py --all' }
 
 "File system
 Plug 'airblade/vim-rooter'
@@ -250,8 +251,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:coc_global_extensions = ['coc-spell-checker', 'coc-json', 'coc-markdownlint', 'coc-yaml', 'coc-yank', 'coc-git', 'coc-clangd', 'coc-flutter', 'coc-html', 'coc-java', 'coc-rust-analyzer', 'coc-tailwindcss', 'coc-tsserver']
 
-"All coc related actions stem from q
-noremap q <Nop>
 
 nmap qr <Plug>(coc-references)
 nmap qt <Plug>(coc-rename)
@@ -261,6 +260,13 @@ nmap qh <Plug>(coc-definition)
 nmap qs <Plug>(coc-fix-current)
 nmap qw <Plug>(coc-codeaction-selected)
 nmap qj :CocCommand workspace.showOutput<CR>
+nmap <C-g> <Plug>(coc-codelens-action)
+
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> qc <Plug>(coc-range-select)
+xmap <silent> qc <Plug>(coc-range-select)
 
 nmap qd :call <SID>show_documentation()<CR>
 
