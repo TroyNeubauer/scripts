@@ -453,7 +453,7 @@ inoremap <Right> <Nop>
 
 "Use kk in addition to escape because its faster to type and jj to save too
 imap <silent> kk <Esc>
-imap jj kk:w<CR>
+imap <silent> jj <Esc>:w<CR>
 
 "Fzf keybinds
 nnoremap <silent> <leader>o <cmd>lua require('telescope.builtin').find_files()<CR>

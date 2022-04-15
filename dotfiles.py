@@ -15,6 +15,7 @@ print("Dest dir is: " + git_dir)
 to_copy = [
     ".config/nvim/init.vim",
     ".config/nvim/coc-settings.json",
+    ".config/alacritty/alacritty.yml",
     ".config/leftwm/config.toml",
     ".config/fish/functions/",
     ".config/fish/completions/",
