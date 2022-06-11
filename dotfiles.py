@@ -24,6 +24,7 @@ to_copy = [
     ".null.gitconfig",
     ".xinitrc.kde",
     ".xinitrc.left",
+    ".xinitrc.i3",
     "headphones",
     "headphones-boot.sh",
     ".config/polybar/config",
