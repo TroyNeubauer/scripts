@@ -3,6 +3,6 @@ bluetoothctl agent on
 bluetoothctl power on
 bluetoothctl scan on
 
-#bluetoothctl remove AC:12:2F:5D:C2:C2
-#bluetoothctl pair AC:12:2F:5D:C2:C2
-bluetoothctl connect AC:12:2F:5D:C2:C2
+bluetoothctl remove 2C:E0:32:DB:A5:33
+bluetoothctl pair 2C:E0:32:DB:A5:33
+bluetoothctl connect 2C:E0:32:DB:A5:33

@@ -1,8 +1,0 @@
-[user]
-	name = Troy Neubauer
-	email = troy@null.black
-[commit]
-	gpgSign = false
-[tag]
-	gpgSign = false
-

@@ -27,19 +27,6 @@ Plug 'nvim-telescope/telescope.nvim'
 "File system
 Plug 'airblade/vim-rooter'
 
-" Semantic language support
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp_extensions.nvim'
-Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
-Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
-Plug 'hrsh7th/cmp-path', {'branch': 'main'}
-Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
-Plug 'ray-x/lsp_signature.nvim'
-
-" Only because nvim-cmp _requires_ snippets
-Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
-Plug 'hrsh7th/vim-vsnip'
-
 " Syntactic language support
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
@@ -53,6 +40,24 @@ Plug 'alvan/vim-closetag'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 "Plug 'wikitopian/hardmode'
+
+" LSP Support
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+
+"  Snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+
+Plug 'VonHeikemen/lsp-zero.nvim'
 
 call plug#end()
 
@@ -250,146 +255,79 @@ set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•,space:.
 " # LSP Support
 " =============================================================================
 
-set completeopt=menuone,noinsert,noselect
+lua << EOF
 
-" Avoid showing extra messages when using completion
-set shortmess+=c
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- local opts = { noremap=true, silent=true }
+-- vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+-- 
+-- -- Use an on_attach function to only map the following keys
+-- -- after the language server attaches to the current buffer
+-- local on_attach = function(client, bufnr)
+--   -- Enable completion triggered by <c-x><c-o>
+--   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+-- 
+--   --buf_set_keymap('n', ',D', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',h', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',d', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',t', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',w', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',b', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', ',n', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+-- end
 
+local lsp = require('lsp-zero')
 
+vim.lsp.set_log_level("debug")
 
-lua << END
-local cmp = require'cmp'
+lsp.preset('recommended')
+lsp.setup()
 
-local lspconfig = require'lspconfig'
-cmp.setup({
-  snippet = {
-    -- REQUIRED by nvim-cmp. get rid of it once we can
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    -- Tab immediately completes. C-n/C-p to select.
-    ['<Tab>'] = cmp.mapping.confirm({ select = true })
-  },
-  sources = cmp.config.sources({
-    -- TODO: currently snippets from lsp end up getting prioritized -- stop that!
-    { name = 'nvim_lsp' },
-  }, {
-    { name = 'path' },
-  }),
-  experimental = {
-    ghost_text = true,
-  },
+lsp.ensure_installed({
+  'clangd',
+  'rust_analyzer',
+  'rnix',
+  'jdtls',
 })
+  
 
--- Enable completing paths in :
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  })
-})
+lsp.on_attach(function(client, bufnr)
+  local noremap = {buffer = bufnr, remap = false}
+  local bind = vim.keymap.set
 
--- Setup lspconfig.
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  --bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', noremap)
+  --   --buf_set_keymap('n', ',D', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  bind('n', ',h', '<Cmd>lua vim.lsp.buf.definition()<CR>', noremap)
+  bind('n', ',d', '<Cmd>lua vim.lsp.buf.hover()<CR>', noremap)
+  bind('n', ',i', '<cmd>lua vim.lsp.buf.implementation()<CR>', noremap)
+  bind('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', noremap)
+  bind('n', '<space>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', noremap)
+  bind('n', ',t', '<cmd>lua vim.lsp.buf.rename()<CR>', noremap)
+  bind('n', ',w', '<cmd>lua vim.lsp.buf.code_action()<CR>', noremap)
+  bind('n', ',r', '<cmd>lua vim.lsp.buf.references()<CR>', noremap)
+  bind('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', noremap)
+  bind('n', ',b', '<cmd>lua vim.diagnostic.goto_prev()<CR>', noremap)
+  bind('n', ',n', '<cmd>lua vim.diagnostic.goto_next()<CR>', noremap)
+  bind('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', noremap)
+  bind('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', noremap)
+end)
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+vim.fn.setenv("CARGO_TARGET_DIR", "/tmp/nvim-rust-target"..os.getenv("PWD"))
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+EOF
 
-  --nmap qt <Plug>(coc-rename)
-  --nmap qf :call My_coc_format()<CR>
-  --nmap qi <Plug>(coc-implementation)
-  --nmap qh <Plug>(coc-definition)
-  --nmap qs <Plug>(coc-fix-current)
-  --nmap qw <Plug>(coc-codeaction-selected)
-  --nmap qj :CocCommand workspace.showOutput<CR>
-  --nmap <C-g> <Plug>(coc-codelens-action)
-  --
-  --" Use CTRL-S for selections ranges.
-  --" Requires 'textDocument/selectionRange' support of language server.
-  --nmap <silent> qc <Plug>(coc-range-select)
-  --xmap <silent> qc <Plug>(coc-range-select)
-  --
-  --nmap qd :call <SID>show_documentation()<CR>
-  --nmap <silent> qb <Plug>(coc-diagnostic-prev)
-  --nmap <silent> qn <Plug>(coc-diagnostic-next)
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', ',h', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', ',d', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', ',i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', ',t', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', ',w', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', ',r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', ',b', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ',n', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-  -- Get signatures (and _only_ signatures) when in argument lists.
-  require "lsp_signature".on_attach({
-    doc_lines = 0,
-    handler_opts = {
-      border = "none"
-    },
-  })
-end
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-      },
-      completion = {
-	postfix = {
-	  enable = false,
-	},
-      },
-      procMacro = {
-        enable = true
-      },
-    },
-  },
-  capabilities = capabilities,
-}
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true,
-  }
-)
-END
-
-" Enable type inlay hints
-autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }
-
-lua << END
-require('telescope').setup {
-    extensions = {
-        fzf_writer = {
-            minimum_grep_characters = 2,
-            minimum_files_characters = 2,
-        }
-    }
-}
-END
 
 " =============================================================================
 " # Key Remappings
@@ -468,7 +406,6 @@ nnoremap <leader>rc :source $MYVIMRC<CR>
 
 set undodir=~/.vimdid
 set undofile
-
 
 
 if g:os == "Linux"

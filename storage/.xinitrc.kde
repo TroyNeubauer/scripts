@@ -1,8 +1,0 @@
-#!/bin/bash
-
-setxkbmap -layout us -variant dvp
-
-/home/troy/.screenlayout/active.sh &
-
-export DESKTOP_SESSION=plasma
-exec startplasma-x11
