@@ -3,11 +3,11 @@
 [user]
 	name = Troy Neubauer
 	email = tneubauer@anduril.com 
-	signingkey = A9D84D8573C7AA85
+	signingkey = FE730F938597E956
 [pull]
 	rebase = false
-[gpg]
-	program = gpg2
+#[gpg]
+#	program = gpg2
 [commit]
 	gpgSign = true
 [tag]
@@ -23,6 +23,7 @@
 # Delta diff support
 [core]
     pager = delta
+    editor = vim
 
 [interactive]
     diffFilter = delta --color-only
@@ -38,3 +39,4 @@
     colorMoved = default
 [push]
 	autoSetupRemote = true
+	default = current
