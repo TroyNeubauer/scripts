@@ -13,21 +13,16 @@ print("home_dir is: " + home_dir)
 print("Dest dir is: " + git_dir)
 
 to_copy = [
-    ".config/nvim/init.vim",
-    ".config/nvim/coc-settings.json",
     ".config/alacritty/alacritty.yml",
-    ".config/leftwm/config.toml",
     ".config/fish/functions/",
     ".config/fish/completions/",
     ".config/fish/fish_plugins",
     ".gitconfig",
-    ".null.gitconfig",
-    ".xinitrc.kde",
-    ".xinitrc.left",
     ".xinitrc.i3",
     "headphones",
     "headphones-boot.sh",
     ".config/polybar/config",
+    ".config/nvim/",
 #   ... Add each file or dir that needs to be copied
 ]
 
