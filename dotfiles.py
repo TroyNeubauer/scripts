@@ -17,6 +17,7 @@ to_copy = [
     ".config/fish/functions/",
     ".config/fish/completions/",
     ".config/fish/fish_plugins",
+    ".config/i3/config",
     ".gitconfig",
     ".xinitrc.i3",
     "headphones",
