@@ -22,6 +22,7 @@ to_copy = [
     ".xinitrc.i3",
     "headphones",
     "headphones-boot.sh",
+    ".xmodmap",
     ".config/polybar/config",
     ".config/nvim/",
 #   ... Add each file or dir that needs to be copied
